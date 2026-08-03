@@ -42,7 +42,6 @@ async function getThings(url: string): Promise<Thing[]> {
 
 async function getThing(thing: Thing, root?: string): Promise<string> {
     const path = (root ?? "") +  "/" + thing.path
-    console.log("fetching from " + thing.path, root)
     return fetch(path)
         .then(response => response.text())
 }
