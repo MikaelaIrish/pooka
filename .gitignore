@@ -26,3 +26,4 @@ dist-ssr
 *.sln
 *.sw?
 /pooka-react-demo.iml
+/pooka-react-demo/pooka-react-demo.iml
