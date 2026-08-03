@@ -1,5 +1,5 @@
 enum ThingType {
-    HTML, MARKDOWN
+    HTML = "HTML", MARKDOWN = "MARKDOWN"
 }
 
 interface Thing {
@@ -9,7 +9,7 @@ interface Thing {
     timestamp: Date;
     tags: string[] | undefined;
     type: ThingType | undefined;
-    relativePath: string;
+    path: string;
 }
 
 const thingDefaults: Pick<Thing, 'tags' | 'type'> = {
@@ -26,7 +26,7 @@ function parseThing(json: any): Thing {
         type: json.type,
         author: json.author,
         timestamp: json.timestamp,
-        relativePath: json.relativePath
+        path: json.path
     }
 }
 
@@ -40,8 +40,10 @@ async function getThings(url: string): Promise<Thing[]> {
         .then(text => parseThings(JSON.parse(text)));
 }
 
-async function getThing(thingRoot: URL, thing: Thing): Promise<string> {
-    return fetch(new URL(thing.relativePath, thingRoot))
+async function getThing(thing: Thing, root?: string): Promise<string> {
+    const path = (root ?? "") +  "/" + thing.path
+    console.log("fetching from " + thing.path, root)
+    return fetch(path)
         .then(response => response.text())
 }
 

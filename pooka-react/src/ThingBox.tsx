@@ -1,4 +1,4 @@
-import React, {type JSX, type ReactElement, useEffect, useState} from "react";
+import React, {type FC, type JSX, type ReactElement, useEffect, useState} from "react";
 import parse from "html-react-parser";
 import {getThing, type Thing, ThingType} from "./util.js";
 import Markdown from "react-markdown";
@@ -9,7 +9,8 @@ function render(content: string, type: ThingType | undefined): ReactElement {
 
     switch(type) {
         case ThingType.HTML:
-            output = <div> { parse.default(content) } </div>;
+            // @ts-ignore
+            output = <div> { parse(content) } </div>;
             break;
         case ThingType.MARKDOWN:
             output = <Markdown remarkPlugins={[remarkGfm]}>
@@ -23,14 +24,19 @@ function render(content: string, type: ThingType | undefined): ReactElement {
     return output;
 }
 
-function ThingBox(thingRoot: URL, thing: Thing): JSX.Element {
+interface ThingBoxProps {
+    thing: Thing,
+    root?: string
+}
+
+const ThingBox: React.FC<ThingBoxProps> = (props: ThingBoxProps) => {
     const [content, setContent] = useState("");
 
     useEffect(() => {
-        getThing(thingRoot, thing).then(text => setContent(text))
-    }, [thing]);
+        getThing(props.thing, props.root).then(text => setContent(text))
+    }, [props]);
 
-    return render(content, thing.type);
+    return render(content, props.thing?.type);
 }
 
 export default ThingBox;

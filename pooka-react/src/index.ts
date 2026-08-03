@@ -1,4 +1,4 @@
-import ThingBox from "./thing-box.js";
+import ThingBox from "./ThingBox.js";
 import { getThings, getThing, ThingType, type Thing } from "./util.js";
 
 export { ThingBox, getThings, getThing, ThingType }

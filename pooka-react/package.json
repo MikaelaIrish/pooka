@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "module": "node18",
   "scripts": {
     "package": "pkgroll"
   },
@@ -19,5 +20,14 @@
     "tsx": "^4.23.5",
     "typescript": "^5.9.3"
   },
-  "exports": "./dist/index.mjs"
+  "exports":  {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  }
 }
