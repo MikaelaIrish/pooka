@@ -1,0 +1,23 @@
+{
+  "name": "pooka-react",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "package": "pkgroll"
+  },
+  "dependencies": {
+    "html-react-parser": "^6.1.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "pkgroll": "^2.27.1",
+    "tsx": "^4.23.5",
+    "typescript": "^5.9.3"
+  },
+  "exports": "./dist/index.mjs"
+}

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "node18",
+    "target": "es2020",
+    "sourceMap": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "declarationMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "jsx": "react"
+  },
+  "exclude" : [
+    "node_modules"
+  ]
+}
